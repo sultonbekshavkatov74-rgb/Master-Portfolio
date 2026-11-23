@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sultonbek Shavkatov | Frontend Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-grid antialiased selection:bg-sky-500/30 selection:text-sky-200">
+
+  <!-- Orqa fon yorug'lik effektlari -->
+  <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none -z-10" style="background-color: var(--accent-soft);"></div>
+  <div class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none -z-10"></div>
+
+  <!-- Navbar -->
+  <header class="fixed top-0 inset-x-0 z-40 border-b border-white/5 bg-[#09090b]/85 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-2.5 group">
+        <div class="theme-bg w-9 h-9 rounded-xl flex items-center justify-center font-mono font-bold text-sm shadow-lg transition-transform group-hover:scale-105">
+          SS
+        </div>
+        <span class="font-semibold tracking-tight text-white">Sultonbek<span class="theme-text">.dev</span></span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+        <a href="#home" data-i18n="nav_home" class="hover:text-white transition-colors">Bosh sahifa</a>
+        <a href="#about" data-i18n="nav_about" class="hover:text-white transition-colors">Men haqimda</a>
+        <a href="#skills" data-i18n="nav_skills" class="hover:text-white transition-colors">Texnologiyalar</a>
+        <a href="#projects" data-i18n="nav_projects" class="hover:text-white transition-colors">Loyihalar</a>
+        <a href="#contact" data-i18n="nav_contact" class="hover:text-white transition-colors">Aloqa</a>
+      </nav>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+       
+        <div class="relative" id="theme-dropdown-wrapper">
+          <button type="button" id="theme-toggle-btn" aria-label="Rangni o'zgartirish"
+                  class="p-2.5 rounded-xl bg-white/[0.04] hover:bg-white/10 border border-white/10 text-zinc-200 transition-colors flex items-center justify-center">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="8.5" r="4.2" />
+              <circle cx="8.8" cy="14.2" r="4.2" />
+              <circle cx="15.2" cy="14.2" r="4.2" />
+            </svg>
+          </button>
+
+          <div id="theme-menu" class="hidden absolute right-0 mt-3 w-48 p-3.5 rounded-2xl bg-[#141418] border border-white/10 shadow-2xl z-50">
+            <div class="grid grid-cols-3 gap-2.5">
+              <button type="button" onclick="setAccentColor('#ff5a43')" class="w-11 h-11 rounded-xl bg-[#ff5a43] hover:scale-105 transition-transform ring-2 ring-transparent focus:ring-white" title="Qizil"></button>
+              <button type="button" onclick="setAccentColor('#2563eb')" class="w-11 h-11 rounded-xl bg-[#2563eb] hover:scale-105 transition-transform ring-2 ring-transparent focus:ring-white" title="Ko'k"></button>
+              <button type="button" onclick="setAccentColor('#22a047')" class="w-11 h-11 rounded-xl bg-[#22a047] hover:scale-105 transition-transform ring-2 ring-transparent focus:ring-white" title="Yashil"></button>
+              <button type="button" onclick="setAccentColor('#facc15')" class="w-11 h-11 rounded-xl bg-[#facc15] hover:scale-105 transition-transform ring-2 ring-transparent focus:ring-white" title="Sariq"></button>
+              <button type="button" onclick="setAccentColor('#7c3aed')" class="w-11 h-11 rounded-xl bg-[#7c3aed] hover:scale-105 transition-transform ring-2 ring-transparent focus:ring-white" title="Binafsha"></button>
+              <button type="button" onclick="setAccentColor('#f97316')" class="w-11 h-11 rounded-xl bg-[#f97316] hover:scale-105 transition-transform ring-2 ring-transparent focus:ring-white" title="To'q sariq"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative" id="lang-dropdown-wrapper">
+          <button type="button" id="lang-toggle-btn" aria-label="Tilni tanlash"
+                  class="p-2.5 rounded-xl bg-white/[0.04] hover:bg-white/10 border border-white/10 text-zinc-200 transition-colors flex items-center justify-center">
+            <i data-lucide="languages" class="w-5 h-5"></i>
+          </button>
+
+          <div id="lang-menu" class="hidden absolute right-0 mt-3 w-44 p-2 rounded-2xl bg-[#141418] border border-white/10 shadow-2xl z-50 space-y-1">
+            <button type="button" onclick="setLanguage('uz')" data-lang-opt="uz"
+                    class="lang-opt w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-white bg-white/10 font-medium transition-colors text-left">
+              <span class="text-[11px] font-mono font-bold text-zinc-400">UZ</span>
+              <span>Uzbek</span>
+            </button>
+            <button type="button" onclick="setLanguage('en')" data-lang-opt="en"
+                    class="lang-opt w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-zinc-300 hover:bg-white/5 transition-colors text-left">
+              <span class="text-[11px] font-mono font-bold text-zinc-400">GB</span>
+              <span>English</span>
+            </button>
+            <button type="button" onclick="setLanguage('ru')" data-lang-opt="ru"
+                    class="lang-opt w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm text-zinc-300 hover:bg-white/5 transition-colors text-left">
+              <span class="text-[11px] font-mono font-bold text-zinc-400">RU</span>
+              <span>Russian</span>
+            </button>
+          </div>
+        </div>
+
+        <a href="https://t.me/Shavkatov_Sultonbek_722" target="_blank" rel="noopener noreferrer"
+           class="theme-bg hidden sm:flex px-4 py-2 rounded-xl font-semibold text-sm transition-all shadow-lg items-center gap-2">
+          <i data-lucide="send" class="w-3.5 h-3.5"></i>
+          <span data-i18n="btn_contact">Bog'lanish</span>
+        </a>
+
+        <button id="mobile-menu-btn" aria-label="Menyu" class="md:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-[#09090b]/95 px-5 py-4 space-y-3 text-sm">
+      <a href="#home" data-i18n="nav_home" class="block py-1.5 text-zinc-300 hover:text-white">Bosh sahifa</a>
+      <a href="#about" data-i18n="nav_about" class="block py-1.5 text-zinc-300 hover:text-white">Men haqimda</a>
+      <a href="#skills" data-i18n="nav_skills" class="block py-1.5 text-zinc-300 hover:text-white">Texnologiyalar</a>
+      <a href="#projects" data-i18n="nav_projects" class="block py-1.5 text-zinc-300 hover:text-white">Loyihalar</a>
+      <a href="#contact" data-i18n="nav_contact" class="block py-1.5 text-zinc-300 hover:text-white">Aloqa</a>
+    </div>
+  </header>
+
+
+  <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-28 px-5">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+     
+      <div class="lg:col-span-7 space-y-6">
+        <div class="theme-soft-bg inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs font-medium text-zinc-200">
+          <span class="theme-bg w-2 h-2 rounded-full animate-pulse"></span>
+          <span id="hero-badge-text">Yangi loyihalar va hamkorlik uchun ochiqman</span>
+        </div>
+
+        <h1 id="hero-title" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12]">
+          Salom, men <br />
+          <span class="text-gradient">Sultonbek Shavkatov</span>
+        </h1>
+
+        <div class="font-mono text-lg sm:text-xl text-zinc-300 flex items-center gap-2">
+          <span class="theme-text">&gt;</span>
+          <span id="typewriter">Frontend Developer</span><span class="theme-text cursor-blink">|</span>
+        </div>
+
+        <p id="hero-desc-text" class="text-zinc-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+          Zamonaviy, tezkor va har qanday ekranga moslashuvchan (responsive) veb-saytlar yaratuvchi Frontend dasturchiman. G'oyalarni toza kod va chiroyli interfeysga aylantiraman.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="#projects" class="theme-bg px-6 py-3.5 rounded-xl font-semibold text-sm transition-all flex items-center gap-2 shadow-xl">
+            <span id="hero-projects-btn-text">Loyihalarimni ko'rish</span>
+            <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+          </a>
+          <a href="https://github.com/sultonbekshavkatov74-rgb" target="_blank" rel="noopener noreferrer"
+             class="px-6 py-3.5 rounded-xl glass-card text-white font-medium text-sm hover:bg-white/5 transition-all flex items-center gap-2">
+            <i data-lucide="github" class="w-4 h-4 text-zinc-300"></i>
+            <span id="hero-github-btn-text">GitHub Profil</span>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 max-w-md">
+          <div>
+            <div class="text-2xl font-bold text-white">5+</div>
+            <div id="stat-projects-label" class="text-xs text-zinc-400">Tayyor loyihalar</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white">10+</div>
+            <div id="stat-tech-label" class="text-xs text-zinc-400">Texnologiyalar</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white">100%</div>
+            <div id="stat-ui-label" class="text-xs text-zinc-400">Responsive UI</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 flex justify-center lg:justify-end">
+        <div class="relative w-full max-w-[360px]">
+          <div class="theme-bg absolute -inset-1 rounded-3xl blur opacity-25"></div>
+          <div class="relative rounded-3xl overflow-hidden border border-white/10 bg-[#111115] shadow-2xl aspect-[4/5]">
+            <img 
+              src="my imege.jpg" 
+              alt="Sultonbek Shavkatov" 
+              onerror="this.src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80'"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-white font-bold text-sm">Sultonbek Shavkatov</p>
+                  <p class="theme-text text-xs font-mono">Frontend Developer</p>
+                </div>
+                <span class="theme-soft-bg px-2.5 py-1 rounded-full border text-white text-[11px] font-medium">
+                  Open to Work
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-20 px-5 border-t border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-10">
+        <span id="about-sub-text" class="theme-text font-mono text-xs uppercase tracking-widest">01 / Men haqimda</span>
+        <h2 id="about-title-text" class="text-3xl sm:text-4xl font-bold mt-2">Men kimman va nima qilaman?</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+        <div class="lg:col-span-7 glass-card rounded-3xl p-7 sm:p-9 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <h3 id="about-card-title" class="text-xl sm:text-2xl font-bold text-white">
+              Sultonbek Shavkatov — Frontend Developer
+            </h3>
+            <p id="about-p1-text" class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+              Men veb-interfeyslar yaratish, mavjud dizaynlarni aniq va toza kodga o‘tkazish hamda foydalanuvchilar uchun qulay va tezkor saytlar ishlab chiqish bilan shug‘ullanaman.
+            </p>
+            <p id="about-p2-text" class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+              Amaliyot davomida tijorat saytlari, ekologiya va sanoat yo‘nalishidagi veb-platformalar hamda mashhur servislarning interfeys klonlarini ishlab chiqib, barcha loyihalarimni GitHub profilimda yuritib kelmoqdaman.
+            </p>
+          </div>
+
+          <div class="grid sm:grid-cols-3 gap-4 pt-4 border-t border-white/10">
+            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+              <div class="theme-text font-mono text-xs mb-1">01</div>
+              <div id="about-feat1-title" class="text-sm font-semibold text-white">Toza Kod</div>
+              <div id="about-feat1-desc" class="text-xs text-zinc-400 mt-1">Tartibli va o‘qishga qulay struktura</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+              <div class="theme-text font-mono text-xs mb-1">02</div>
+              <div id="about-feat2-title" class="text-sm font-semibold text-white">Moslashuvchanlik</div>
+              <div id="about-feat2-desc" class="text-xs text-zinc-400 mt-1">Telefon, planshet va kompyuterda ideal</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+              <div class="theme-text font-mono text-xs mb-1">03</div>
+              <div id="about-feat3-title" class="text-sm font-semibold text-white">Interaktivlik</div>
+              <div id="about-feat3-desc" class="text-xs text-zinc-400 mt-1">Jonli effektlar va qulay boshqaruv</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 glass-card rounded-3xl p-7 sm:p-9 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <h3 id="about-info-title" class="text-lg font-bold text-white">Asosiy ma'lumotlar</h3>
+
+            <div class="space-y-3 text-sm">
+              <div class="flex items-center justify-between py-2.5 border-b border-white/5">
+                <span id="info-lbl-name" class="text-zinc-400">Ism-familiya</span>
+                <span class="font-semibold text-white">Sultonbek Shavkatov</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5 border-b border-white/5">
+                <span id="info-lbl-role" class="text-zinc-400">Mutaxassislik</span>
+                <span class="theme-text font-mono text-xs font-semibold">Frontend Developer</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5 border-b border-white/5">
+                <span id="info-lbl-tg" class="text-zinc-400">Telegram</span>
+                <a href="https://t.me/Shavkatov_Sultonbek_722" target="_blank" class="text-zinc-200 hover:underline">@Shavkatov_Sultonbek_722</a>
+              </div>
+              <div class="flex items-center justify-between py-2.5 border-b border-white/5">
+                <span id="info-lbl-ig" class="text-zinc-400">Instagram</span>
+                <a href="https://instagram.com/iveco_storise" target="_blank" class="text-zinc-200 hover:underline">@iveco_storise</a>
+              </div>
+              <div class="flex items-center justify-between py-2.5">
+                <span id="info-lbl-gh" class="text-zinc-400">GitHub</span>
+                <a href="https://github.com/sultonbekshavkatov74-rgb" target="_blank" class="text-zinc-200 hover:underline truncate max-w-[180px]">sultonbekshavkatov74-rgb</a>
+              </div>
+            </div>
+          </div>
+
+          <a href="#contact" class="theme-bg w-full py-3.5 rounded-xl font-semibold text-sm text-center transition-all flex items-center justify-center gap-2">
+            <span id="about-cta-btn">Men bilan bog'laning</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="py-20 px-5 border-t border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <span id="skills-sub-text" class="theme-text font-mono text-xs uppercase tracking-widest">02 / Texnologiyalar</span>
+          <h2 id="skills-title-text" class="text-3xl sm:text-4xl font-bold mt-2">Texnik ko'nikmalarim</h2>
+        </div>
+        <p class="text-zinc-400 text-sm max-w-md flex items-center gap-2">
+          <i data-lucide="mouse-pointer-click" class="theme-text w-4 h-4 shrink-0"></i>
+          <span id="skills-hint-text">Qisqa ma'lumotni ko'rish uchun istalgan texnologiya ustiga bosing.</span>
+        </p>
+      </div>
+
+      <div id="skills-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
+    </div>
+  </section>
+
+  <div id="tech-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm" onclick="closeTechModal(event)">
+    <div class="relative w-full max-w-2xl rounded-[28px] overflow-hidden bg-[#141418] border border-white/10 shadow-2xl grid md:grid-cols-12 animate-modal" onclick="event.stopPropagation()">
+      <button onclick="forceCloseTechModal()" aria-label="Yopish"
+              class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-zinc-200 flex items-center justify-center transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div id="modal-left-bg" class="md:col-span-5 p-8 flex flex-col items-center justify-center bg-gradient-to-br from-sky-500/20 via-indigo-500/10 to-transparent border-b md:border-b-0 md:border-r border-white/10">
+        <div class="w-28 h-28 rounded-full bg-[#09090b]/80 border border-white/10 shadow-xl flex items-center justify-center mb-3">
+          <span id="modal-icon" class="font-mono font-extrabold text-3xl text-sky-400">HTML</span>
+        </div>
+        <span id="modal-category-tag" class="text-[11px] font-mono text-zinc-400 uppercase tracking-wider">Web Core</span>
+      </div>
+
+      <div class="md:col-span-7 p-6 sm:p-7 flex flex-col justify-between space-y-5">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-300 text-xs font-medium mb-3">
+            <span id="modal-meta">Markup • Web Core</span>
+          </div>
+
+          <h3 id="modal-title" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">HTML5</h3>
+          <p id="modal-desc" class="text-zinc-400 text-sm leading-relaxed mt-2"></p>
+
+          <div class="mt-5">
+            <span id="modal-select-label" class="block text-xs font-medium text-zinc-400 mb-2">Ma'lumot turini tanlang:</span>
+            <div class="grid grid-cols-3 gap-1.5 p-1 rounded-xl bg-black/50 border border-white/5">
+              <button type="button" onclick="switchModalTab('usage')" id="tab-usage"
+                      class="theme-bg py-2 px-2 rounded-lg text-xs font-semibold shadow transition-all">
+                Qo'llanilishi
+              </button>
+              <button type="button" onclick="switchModalTab('level')" id="tab-level"
+                      class="py-2 px-2 rounded-lg text-xs font-medium text-zinc-400 hover:text-white transition-all">
+                Daraja
+              </button>
+              <button type="button" onclick="switchModalTab('projects')" id="tab-projects"
+                      class="py-2 px-2 rounded-lg text-xs font-medium text-zinc-400 hover:text-white transition-all">
+                Loyihalar
+              </button>
+            </div>
+          </div>
+
+          <div id="modal-tab-content" class="mt-3 p-3 rounded-xl bg-white/[0.03] border border-white/5 text-xs text-zinc-300 leading-relaxed"></div>
+        </div>
+
+        <button id="modal-close-btn" onclick="forceCloseTechModal()"
+                class="theme-bg w-full py-3 rounded-full font-bold text-sm transition-all shadow-lg">
+          Tushunarli
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <section id="projects" class="py-20 px-5 border-t border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+        <div>
+          <span id="projects-sub-text" class="theme-text font-mono text-xs uppercase tracking-widest">03 / Portfolio</span>
+          <h2 id="projects-title-text" class="text-3xl sm:text-4xl font-bold mt-2">Tanlangan loyihalarim</h2>
+        </div>
+
+        <div class="flex flex-wrap gap-2" id="filter-buttons">
+          <button data-filter="all" class="filter-btn theme-bg px-4 py-2 rounded-xl text-xs font-semibold transition-all">
+            Barchasi (5)
+          </button>
+          <button data-filter="web" class="filter-btn glass-card px-4 py-2 rounded-xl text-xs font-medium text-zinc-300 hover:text-white transition-all">
+            Veb-saytlar
+          </button>
+          <button data-filter="clone" class="filter-btn glass-card px-4 py-2 rounded-xl text-xs font-medium text-zinc-300 hover:text-white transition-all">
+            Clone & UI
+          </button>
+          <button data-filter="system" class="filter-btn glass-card px-4 py-2 rounded-xl text-xs font-medium text-zinc-300 hover:text-white transition-all">
+            Tizimlar
+          </button>
+        </div>
+      </div>
+
+      <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-20 px-5 border-t border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <div class="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+        <div class="theme-soft-bg absolute top-0 right-0 w-72 h-72 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="grid lg:grid-cols-12 gap-10 items-center relative z-10">
+          <div class="lg:col-span-6 space-y-5">
+            <span id="contact-sub-text" class="theme-text font-mono text-xs uppercase tracking-widest">04 / Aloqa</span>
+            <h2 id="contact-title-text" class="text-3xl sm:text-4xl font-bold leading-tight">
+              Loyihangiz bormi? <br />
+              <span class="text-gradient">Birgalikda yaratamiz!</span>
+            </h2>
+            <p id="contact-desc-text" class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+              Veb-sayt yaratish, mavjud dizaynni kodga o'tkazish yoki hamkorlik bo'yicha takliflaringiz bo'lsa, quyidagi tarmoqlar orqali yozishingiz mumkin.
+            </p>
+
+            <div class="space-y-3 pt-2">
+              <a href="https://t.me/Shavkatov_Sultonbek_722" target="_blank" rel="noopener noreferrer"
+                 class="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 transition-all group">
+                <div class="flex items-center gap-3.5">
+                  <div class="theme-soft-bg theme-text w-10 h-10 rounded-xl flex items-center justify-center">
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs text-zinc-400">Telegram</div>
+                    <div class="text-sm font-semibold text-white">@Shavkatov_Sultonbek_722</div>
+                  </div>
+                </div>
+                <i data-lucide="external-link" class="w-4 h-4 text-zinc-500 group-hover:text-white"></i>
+              </a>
+
+              <a href="https://instagram.com/iveco_storise" target="_blank" rel="noopener noreferrer"
+                 class="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 transition-all group">
+                <div class="flex items-center gap-3.5">
+                  <div class="theme-soft-bg theme-text w-10 h-10 rounded-xl flex items-center justify-center">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs text-zinc-400">Instagram</div>
+                    <div class="text-sm font-semibold text-white">@iveco_storise</div>
+                  </div>
+                </div>
+                <i data-lucide="external-link" class="w-4 h-4 text-zinc-500 group-hover:text-white"></i>
+              </a>
+
+              <a href="https://github.com/sultonbekshavkatov74-rgb" target="_blank" rel="noopener noreferrer"
+                 class="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 transition-all group">
+                <div class="flex items-center gap-3.5">
+                  <div class="theme-soft-bg theme-text w-10 h-10 rounded-xl flex items-center justify-center">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs text-zinc-400">GitHub</div>
+                    <div class="text-sm font-semibold text-white">sultonbekshavkatov74-rgb</div>
+                  </div>
+                </div>
+                <i data-lucide="external-link" class="w-4 h-4 text-zinc-500 group-hover:text-white"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <form id="contact-form" class="p-6 sm:p-8 rounded-2xl bg-[#09090b]/80 border border-white/10 space-y-4">
+              <h3 id="form-title-text" class="text-lg font-semibold text-white">Tezkor xabar yuborish</h3>
+              <div>
+                <label id="label-name-text" class="block text-xs text-zinc-400 mb-1.5">Ismingiz</label>
+                <input type="text" id="sender-name" required placeholder="Ismingizni kiriting"
+                       class="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white/40 transition-colors" />
+              </div>
+              <div>
+                <label id="label-contact-text" class="block text-xs text-zinc-400 mb-1.5">Telegram yoki Telefon raqamingiz</label>
+                <input type="text" id="sender-contact" required placeholder="@username yoki +998..."
+                       class="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white/40 transition-colors" />
+              </div>
+              <div>
+                <label id="label-msg-text" class="block text-xs text-zinc-400 mb-1.5">Xabar matni</label>
+                <textarea id="sender-msg" rows="3" required placeholder="Loyiha haqida qisqacha yozing..."
+                          class="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-white/40 transition-colors"></textarea>
+              </div>
+              <button type="submit"
+                      class="theme-bg w-full py-3.5 rounded-xl font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                <span id="form-btn-text">Telegram orqali yuborish</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 px-5 border-t border-white/5 text-center text-xs text-zinc-500">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p id="footer-copy-text">&copy; <span id="year"></span> Sultonbek Shavkatov. Barcha huquqlar himoyalangan.</p>
+      <div class="flex items-center gap-5">
+        <a href="https://github.com/sultonbekshavkatov74-rgb" target="_blank" class="hover:text-zinc-300 transition-colors">GitHub</a>
+        <a href="https://t.me/Shavkatov_Sultonbek_722" target="_blank" class="hover:text-zinc-300 transition-colors">Telegram</a>
+        <a href="https://instagram.com/iveco_storise" target="_blank" class="hover:text-zinc-300 transition-colors">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
